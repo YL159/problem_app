@@ -1,3 +1,7 @@
+'''
+LeetCode 438 All Anagrams
+word frame moving, update counter only at edge.
+'''
 from collections import Counter
 from typing import List
 

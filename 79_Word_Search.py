@@ -1,5 +1,6 @@
 '''
 Leetcode 79 Word Search
+Matrix DFS early exit with edge filter.
 '''
 from typing import List
 class Solution:
