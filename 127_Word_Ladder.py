@@ -34,7 +34,7 @@ def ladderLength(beginWord: str, endWord: str, wordList: List[str]) -> int:
         dis_map[distance(endWord, w)].add(w)
 
     # construct adjacency map from dist_map
-    # O(n^2/m) to find every edge, by only checking same and next neighbor layer
+    # find every edge, by only checking the same and next layer
     adj_map={}
     for i in range(len(beginWord)+1):
         level = dis_map[i].copy()
