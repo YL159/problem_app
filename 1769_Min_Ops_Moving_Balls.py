@@ -3,6 +3,7 @@ Leetcode 1769. Minimum Number of Operations to Move All Balls to Each Box
 Incrementally calculate current moves based on previous moves.
 O(n) time, O(1) space
 '''
+from typing import List
 class Solution:
     def minOperations(self, boxes: str) -> List[int]:
         ans = [0]
