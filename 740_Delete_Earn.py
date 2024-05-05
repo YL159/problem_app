@@ -1,6 +1,6 @@
 '''
 740. Delete and Earn
-Repeatedly rarn the number n you delete, but remove all n+1 and n-1. Solve for max earning.
+Repeatedly earn the number n you delete, but remove all n+1 and n-1. Solve for max earning.
 
 Similar to house robber question. Incrementally maintaining 2 optimum choices:
 taking or not taking current number, can be constructed by previous taking or not taking choices
