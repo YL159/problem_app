@@ -15,10 +15,11 @@ class Solution:
         take, take_not = 0, 0
         for n in sorted(book.keys()):
             # lone numbers without +1 or -1 showing up can always be taken
-            if n-1 not in book and n+1 not in book:
-                res += n * book[n]
-                continue
+            # if n-1 not in book and n+1 not in book:
+            #     res += n * book[n]
+            #     continue
             # update the optimum value of taking/not taking current number
+            # also covers lone number cases
             take, take_not = take_not + n*book[n], max(take, take_not)
             # clean up when reaching the end of continuous numbers like 2,3,4
             if n+1 not in book:
