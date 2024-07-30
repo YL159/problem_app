@@ -1,9 +1,9 @@
-import collections
 '''
-76. Minimum Window Substring
+Leetcode 76. Minimum Window Substring
 Theorem: each min substr containing t, has both sub[0], sub[-1] frequencies in substr equal to their frequencies in t.
 Find initial substring, r moves till another l letter, then l moves till l's letter gets the same letter frequency in t
 '''
+import collections
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
         if len(t) > len(s):
