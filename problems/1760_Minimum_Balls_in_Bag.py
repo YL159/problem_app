@@ -6,6 +6,9 @@ Find the min of max balls of all bags.
 Each operation increase 1 more bag. For a certain max limit n, each bag can be divided into bags of <= n balls.
 The increase of bags for each bag is (ceil(balls / n) - 1)
 Binary search for this optimum n so that the extra bags is closest under max operations.
+
+Similar to 1011. Capacity To Ship Packages Within D Days
+Binary search & check for opt solution, instead of exhaust the partitioning.
 '''
 from typing import List
 import bisect, math
