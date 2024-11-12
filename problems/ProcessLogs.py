@@ -1,6 +1,3 @@
-import pytest
-from typing import List
-from random import randint, sample
 '''
 A single threaded CPU processing a series of processes/tasks with 0-indexed PIDs. While some task is occupying the CPU,
 another task may cut in line because of higher priority, and the current task is pre-empted until that task is done, and thus
@@ -8,6 +5,9 @@ resume its CPU time.
 Given the total number of tasks n, and a list of CPU logs with format "pid(int):start/stop:time(int)", calculate the respective
 total CPU time of each process in the order of increasing PID.
 '''
+import pytest
+from typing import List
+from random import randint, sample
 
 def logProcessing(n:int, logs:List[str]) -> List:
     # record cumulative CPU time of each process

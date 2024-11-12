@@ -13,7 +13,7 @@ Each subsequent node add/delete operations take O(log(n)) time:
 	Update (+/- 1) each parent node's lsub if the change occurs from its left subtree
 
 Finding kth smallest node also takes O(log(n)):
-	Binary search for the kth by comparing node.lsub + 1 == k
+	Binary search for the kth by comparing k with node.lsub + 1
 	If equal => current node is the kth smallest node
 	If smaller => kth node must be in current node's left subtree
 	If bigger => update the remaining count k' and search right subtree
