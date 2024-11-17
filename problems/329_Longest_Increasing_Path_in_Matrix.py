@@ -10,7 +10,7 @@ Also initialize score board for each cell's state of visit, and smaller neighbor
 Starts from smallest cells, propagate to their larger neighbors's scores
 But only those larger neighbors whose indegree is exhausted will be "mature" enough,
 to propagate their scores to the next iteration.
-Thus saving time from propagating a smaller score to the end of future paths.
+Thus saving time from early propagating a smaller score to the end of future paths.
 
 Time O(m*n), space O(m*n)
 '''
