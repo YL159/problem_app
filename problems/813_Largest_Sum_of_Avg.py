@@ -28,10 +28,8 @@ class Solution:
             return float(sum(nums))
         # make prefix sum array
         pref = [0]
-        s = 0
         for n in nums:
-            s += n
-            pref.append(s)
+            pref.append(pref[-1] + n)
         
         # make dp table of dp[k][n] for best score of k partion of nums[:n]
         dp = [[0]*len(nums) for _ in range(k+1)]
