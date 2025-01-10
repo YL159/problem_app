@@ -34,15 +34,14 @@ class Solution:
         if root.val == key:
             if not root.right:
                 return root.left
-            else:
-                larger = root.right
-                while larger.left:
-                    larger = larger.left
-                # the subtree containint new root (larger) is already resolved
-                # thus safely update this node
-                larger.right = self.deleteNode(root.right, larger.val)
-                larger.left = root.left
-                return larger
+            larger = root.right
+            while larger.left:
+                larger = larger.left
+            # the subtree containint new root (larger) is already resolved
+            # thus safely update this node
+            larger.right = self.deleteNode(root.right, larger.val)
+            larger.left = root.left
+            return larger
         elif root.val < key:
             root.right = self.deleteNode(root.right, key)
         else:

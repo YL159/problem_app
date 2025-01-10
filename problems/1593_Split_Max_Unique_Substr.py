@@ -30,6 +30,7 @@ class Solution:
             sub = -1
             for j in range(i+1, len(s)+1):
                 cur = s[i:j]
+                # leaf pruning
                 if cur in seen or len(s) - j < sub:
                     continue
                 seen.add(cur)

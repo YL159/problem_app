@@ -2,7 +2,7 @@
 Leetcode 84. Largest Rectangle in Histogram
 Find the largest rectangle within the histogram formed by non-neg int array
 
-Theorem: The largest rectangle comes from candidate list of:
+The largest rectangle comes from candidate list of:
 	rectangle = height[i] * max width stretch from i to left & right
 
 Use monotonic increasing stack to find how far height[i] can reach to its right.
