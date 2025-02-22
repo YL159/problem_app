@@ -21,6 +21,8 @@ And move on. This is O(n^2) time for inner loop. Overall O(mn^2)
 
 Method 2: create a monotonic increasing stack for each row, but not popping larger stack tops.
 And maintain a prefix sum of the stack to avoid repeated summation.
+Prefix sum from previous idx can be partially carried to current idx, as if previous 1-matrices extend 1 col to their right
+    but only those matrices with height <= current height
 e.g. row i: 1,0,1,2,3,1,2,0,1
 					| | |
 		stack  [1,2,3]| |	pref = 6 => add pref to result. This is for that 3 in the row
@@ -30,9 +32,11 @@ Encountering any 0, reinitialte stack to empty and pref = 0
 This is also worst case O(n^2), but with prefix sum, overall performance is somewhat better.
 
 Method 3: Similar to method 2, using monotonic increasing stack.
-But we can indeed pop those on stack top that is > mat[i][j].
-Meanwhile also maintain the prefix sum the same as method 2,
-	by counting the popped idx with stack top idx, these idxs must be the same, and reduce them to mat[i][j]
+But we can indeed pop those on stack top that is > row[j], meanwhile also maintain the correct prefix sum the same as method 2.
+i.e. we should discard some matrices in prefix sum that are strictly taller than current height:
+	reduce prefix sum by (row[popped idx] - row[cur idx]) * (popped idx - stack top idx)
+                height diff between taller mat and cur mat * how many such mat
+    => this many matrices can't extend 1 col to continue existing at current idx.
 Add prefix to result as well.
 This has the same effect as method 2, but time complexity is strict O(n) for the inner loop.
 '''
@@ -97,8 +101,8 @@ class Solution:
                     idx = stack.pop()
                     # maintain pref sum to match current state of stack in method 2
                     # stack[-1] idx is possibly related to 0, thus keep 0's index for correct start
-                    start = stack[-1] if stack else - 1
-                    # from idx to current stack[-1] all are the same row[idx], reduce them to row[j]
+                    start = stack[-1] if stack else -1
+                    # from idx to current stack[-1] all are the same height row[idx], reduce them to row[j]
                     pref -= (row[idx] - row[j]) * (idx - start)
                 stack.append(j)
                 pref += row[j]

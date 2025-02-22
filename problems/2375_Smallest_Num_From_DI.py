@@ -4,7 +4,7 @@ Given a string of D/I, indicating target string's neighboring number decreasing/
 Find the smallest result string. Each number 1-9 is used only once.
 
 Result is lexicographically/numerically smallest
-	=> max num = len(pattern)
+	=> max num = len(pattern)+1
 	=> start with smallest possible choices (greedy)
 len(pattern) + 1 = len(result)
 
