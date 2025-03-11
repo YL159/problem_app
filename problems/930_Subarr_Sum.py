@@ -4,6 +4,7 @@ Find count of all subarrays sum to goal
 subset of problem 560 https://leetcode.com/problems/subarray-sum-equals-k/
 pfs is workable here as well
 
+Here is another O(n) time approach
 With enhanced moving frame (sliding window), check each tight 1...1 subarray's neighboring options and add to result.
 Since each of these subarray has different 1...1 core, uniqueness guaranteed.
 
