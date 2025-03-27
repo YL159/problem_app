@@ -17,7 +17,7 @@ Thus we can sort the numbers from grid, count each number's quotient on x
 	grid number sorted [1,3,3,7,9,13,13,15], x=2 -> [0,1,1,3,4,6,6,7]
 Since final uni-value will be one of the grid number, we iterate on each quotient, check if possible
 	e.g. set a distance 1, (target uni-value 3)
-    [0,1,1,3,4,6,6,7] => [-,0,+,+,+,+,+,+]
+    [0,1,1,3,4,6,6,7] => [-,0,0,+,+,+,+,+]
 	set a distance 3, (target uni-value 7)
     [0,1,1,3,4,6,6,7] => [-,-,-,0,+,+,+,+]
 We don't care how many op needed, we care the position in distance arr that makes op min:
