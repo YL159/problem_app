@@ -5,9 +5,7 @@ Given a string, find the shortest palindrome that has the string as suffix.
 Start from middle and to the left (because the answer can't be shorter than the string),
 For current suffix, check if the remaining prefix's reversion is that suffix's prefix.
 
-Don't think KMP algorithm is useful in reducing time complexity here.
-Because for each potential palindrome axis, the text (right part, suffix) and the pattern (left part, prefix)
-are different. No pattern is used to match in the middle of some text.
+Can also use KMP.
 '''
 
 class Solution:

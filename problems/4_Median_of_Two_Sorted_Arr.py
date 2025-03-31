@@ -10,7 +10,7 @@ Since the 2 array are sorted, the result arr[0,median] must be the combination o
     <=> len(nums1[0,m1]) + len(nums2[0,m2]) = (m+n)//2+1
         AND
         Combination of nums1[0,m1] and nums2[0,m2] should produce no "holes" in final array
-            i.e. nums2[m2] separates nums1 at m1 AND nums1[m1] separates nums2 at m2
+        i.e. nums2[m2] separates nums1 at m1 AND nums1[m1] separates nums2 at m2
 
             
 Method 2, great idea from discussion
