@@ -14,10 +14,8 @@ class Solution:
         # overall time O(n) and space O(n)
         # create prefix sum starting at 0
         pref = [0]
-        s = 0
         for n in nums:
-            s += n
-            pref.append(s)
+            pref.append(pref[-1]+n)
         # prefix sum array of firstLen & secondLen blocks
         first = [pref[i] - pref[i-firstLen] for i in range(firstLen, len(pref))]
         sec = [pref[i] - pref[i-secondLen] for i in range(secondLen, len(pref))]

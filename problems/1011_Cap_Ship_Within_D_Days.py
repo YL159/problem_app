@@ -31,13 +31,13 @@ class Solution:
                 # greedily add current load to minimize day count
                 elif total + n <= cap:
                     total += n
-				# wrap today, start another day
+                    # wrap today, start another day
                 else:
                     count += 1
                     total = n
             return total <= cap and count <= days
         
-		# binary search between min/max possible cap
+        # binary search between min/max possible cap
         l, r = max(weights), sum(weights)+1
         while l <= r:
             m = (l+r)//2
