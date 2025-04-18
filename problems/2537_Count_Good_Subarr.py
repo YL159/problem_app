@@ -45,3 +45,28 @@ class Solution:
                 pre = l
             r += 1
         return res
+    
+
+    def countGood(self, nums: List[int], k: int) -> int:
+        # same as method 2, but simpler loop, just check l one by one
+        if len(nums) < 2:
+            return 0
+        count = collections.defaultdict(int)
+        pairs = 0
+        res = 0
+        l, r = 0, 0
+        while r <= len(nums):
+            # current window has < k pairs, increase r
+            if pairs < k:
+                if r == len(nums):
+                    break
+                pairs += count[nums[r]]
+                count[nums[r]] += 1
+                r += 1
+                continue
+            # window has >= k pairs, increase l and decrease pairs
+            res += len(nums) - r + 1
+            count[nums[l]] -= 1
+            pairs -= count[nums[l]]
+            l += 1
+        return res
