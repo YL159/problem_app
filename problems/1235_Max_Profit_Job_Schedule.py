@@ -18,6 +18,7 @@ class Solution:
         ends = collections.defaultdict(list)
         for i, e in enumerate(endTime):
             ends[e].append((startTime[i], profit[i]))
+        # no job end at time 1, padding by empty to accomodate idx binary search
         ends[1] = []
         end_points = sorted(ends)
         # DP profit on end time stamps
