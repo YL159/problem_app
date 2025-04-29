@@ -21,7 +21,7 @@ but for p1 = 4, matching p2 is {0, 3}, => {0, 3} is the same in p1=4's eye
 
 One step further, use dp to record the frequency of pref sums that has same % modulo remains
 	[0,1,1,1,1,2,3,4] pref sum array
-	[0:2, 1:5, 2:1], % modulo ramain 0 is pref {0, 3}, 2 count; remain 1 is pref {1,1,1,1,4}, 5 count ...
+	[0:2, 1:5, 2:1], % modulo remain 0 is pref {0, 3}, 2 count; remain 1 is pref {1,1,1,1,4}, 5 count ...
 Thus for each new pref p1: (p1-p2) % m = k => p1-p2 = k + x*m => p2%m = p1%m - k (mod m)
 it can match any of above prefix sum p2 to get desired subarr.
 
