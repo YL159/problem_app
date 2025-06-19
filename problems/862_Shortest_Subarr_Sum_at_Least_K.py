@@ -22,22 +22,19 @@ class Solution:
         pref = [0]
         for n in nums:
             pref.append(pref[-1] + n)
-            
         que = collections.deque()
-        res = len(nums)
-        updated = False
+        res = len(nums)+1
         
         for i, p in enumerate(pref):
+            # check & pop any smaller indices in que that satisfy >= k sum
+            while que and p - pref[que[0]] >= k:
+                res = min(res, i - que.popleft())
+                
+            # maintain monotonic increasing deque by keeping the bottom increasing pref indices
             while que and pref[que[-1]] >= p:
                 que.pop()
             que.append(i)
-            
-            while len(que) >= 3 and p - pref[que[1]] >= k:
-                que.popleft()
 
-            if len(que) >= 2 and p - pref[que[0]] >= k:
-                res = min(res, que[-1] - que[0])
-                updated = True
-        if not updated:
+        if res == len(nums)+1:
             return -1
         return res
