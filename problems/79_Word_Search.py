@@ -1,45 +1,34 @@
 '''
 Leetcode 79 Word Search
-Matrix DFS early exit with edge filter.
+Find if target word exists in given char matrix as a valid connected up-down-left-right path.
+
+Recursive DFS, mark current path with #, early exit.
 '''
 from typing import List
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
-        
-        def search(ws, i, j) -> bool:
-            # DFS from current (i,j) position
-            if not ws:
+        # DFS from current (i,j) position
+        def search(idx, i, j) -> bool:
+            # guard exit conditions
+            if word[idx] != board[i][j]:
+                return False
+            # word[idx] match board[i][j], move to next index
+            char = board[i][j]
+            board[i][j] = '#'
+            idx += 1
+            if idx == len(word):
                 return True
-            # trim for valid neighbor coordinates
-            neighbors = [(i-1, j), (i+1, j), (i, j-1), (i, j+1)]
-            for x, y in neighbors.copy():
+            for x, y in [(i-1, j), (i+1, j), (i, j-1), (i, j+1)]:
                 if x < 0 or x >= m or y < 0 or y >= n:
-                    neighbors.remove((x, y))
-            # get valid candidates for next recursion
-            cand = []
-            for x, y in neighbors:
-                if not visit[x][y] and board[x][y] == ws[0]:
-                    cand.append((x, y))
-            # DFS with visite map back track
-            for x, y in cand:
-                visit[x][y] = 1
-                if search(ws[1:], x, y):
+                    continue
+                if search(idx, x, y):
                     return True
-                visit[x][y] = 0
+            board[i][j] = char
             return False
 
         m, n = len(board), len(board[0])
-        # maintain only 1 visit map, thus DFS
-        visit = [ [0 for i in range(n)] for j in range(m) ]
-        candidates = []
         for i in range(m):
             for j in range(n):
-                if board[i][j] == word[0]:
-                    candidates.append((i, j))
-        for candidate in candidates:
-            i, j = candidate
-            visit[i][j] = 1
-            if search(word[1:], i, j):
-                return True
-            visit[i][j] = 0
+                if search(0, i, j):
+                    return True
         return False
