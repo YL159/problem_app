@@ -1,6 +1,6 @@
 '''
 Leetcode 1235. Maximum Profit in Job Scheduling
-Given (start, end, profit) triples as jobs, find max profix from taking non-overlapping jobs
+Given (start, end, profit) triples as jobs, find max profit from taking non-overlapping jobs
 # same as #2008. Maximum Earnings From Taxi
 
 Use incremental DP on the end points of all these jobs.
