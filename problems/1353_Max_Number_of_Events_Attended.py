@@ -21,7 +21,7 @@ class Solution:
         for a, b in events:
             ebook[a].append(b)
             max_end = max(max_end, b)
-        # append a fake event with start > all start
+        # append a fake event with start > all end
         # accommodate tail events processing
         ebook[max_end + 1] = [1]
         hp = []
