@@ -43,6 +43,8 @@ This has the same effect as method 2, but time complexity is strict O(n) for the
 from typing import List
 
 class Solution:
+
+    # 1. each i,j, check prev non-greater col, inner loop O(n^2)
     def numSubmat(self, mat: List[List[int]]) -> int:
         # for each col, count consecutive 1 at each idx
         m, n = len(mat), len(mat[0])
@@ -57,39 +59,67 @@ class Solution:
 
         res = 0
         # for each row, count submat ending at i,j
-        
-        # # 1. each i,j, check prev non-greater col, inner loop O(n^2)
-        # for i in range(m):
-        #     for j in range(n):
-        #         # add submat of width >= 1, ending at i,j
-        #         cur = mat[i][j]
-        #         for k in range(j, -1, -1):
-        #             if mat[i][k] == 0:
-        #                 break
-        #             cur = min(cur, mat[i][k])
-        #             res += cur
+        for i in range(m):
+            for j in range(n):
+                # add submat of width >= 1, ending at i,j
+                cur = mat[i][j]
+                for k in range(j, -1, -1):
+                    if mat[i][k] == 0:
+                        break
+                    cur = min(cur, mat[i][k])
+                    res += cur
+        return res
+    
 
-        # # 2. similar to 84. largest rectangle in histogram
-        # # but recording/modify right-ward monotonic stack with its prefix sum
-        # # but inner loop still worst case O(n^2)
-        # for i in range(m):
-        #     stack = []
-        #     pref = 0
-        #     for j in range(n):
-        #         if mat[i][j] == 0:
-        #             stack = []
-        #             pref = 0
-        #             continue
-        #         k = len(stack) - 1
-        #         while k >= 0 and stack[k] > mat[i][j]:
-        #             pref -= stack[k] - mat[i][j]
-        #             stack[k] = mat[i][j]
-        #             k -= 1
-        #         stack.append(mat[i][j])
-        #         pref += mat[i][j]
-        #         res += pref
-                
-		# 3. similar to method 2, but we can pop the stack and maintain pref the same value as method 2,
+    # 2. similar to 84. largest rectangle in histogram
+    def numSubmat(self, mat: List[List[int]]) -> int:
+        # for each col, count consecutive 1 at each idx
+        m, n = len(mat), len(mat[0])
+        for j in range(n):
+            count = 0
+            for i in range(m):
+                if mat[i][j] == 1:
+                    count += 1
+                else:
+                    count = 0
+                mat[i][j] = count
+
+        res = 0
+        # for each row, count submat ending at i,j
+        # but recording/modify right-ward monotonic stack with its prefix sum
+        # but inner loop still worst case O(n^2)
+        for i in range(m):
+            stack = []
+            pref = 0
+            for j in range(n):
+                if mat[i][j] == 0:
+                    stack = []
+                    pref = 0
+                    continue
+                k = len(stack) - 1
+                while k >= 0 and stack[k] > mat[i][j]:
+                    pref -= stack[k] - mat[i][j]
+                    stack[k] = mat[i][j]
+                    k -= 1
+                stack.append(mat[i][j])
+                pref += mat[i][j]
+                res += pref
+        return res
+    
+    # 3. similar to method 2, but we can pop the stack and maintain pref the same value as method 2,
+    def numSubmat(self, mat: List[List[int]]) -> int:
+        # for each col, count consecutive 1 at each idx
+        m, n = len(mat), len(mat[0])
+        for j in range(n):
+            count = 0
+            for i in range(m):
+                if mat[i][j] == 1:
+                    count += 1
+                else:
+                    count = 0
+                mat[i][j] = count
+
+        res = 0
         # without traversing stack, instead pref -= (row[stack[-1]] - mat[i][j]) * idx_difference
         # strictly O(n) for inner loop
         for i in range(m):
@@ -107,5 +137,4 @@ class Solution:
                 stack.append(j)
                 pref += row[j]
                 res += pref
-
         return res
