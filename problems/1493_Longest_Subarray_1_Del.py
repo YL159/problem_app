@@ -10,31 +10,30 @@ and harder to extend for deleting multiple 0s
 
 class Solution:
     def longestSubarray(self, nums: List[int]) -> int:
-        # list with all 1s, delete 1 not 0
-        if len(set(nums)) == 1 and nums[0]:
-            return len(nums)-1
-        # else, deleting 0 is optimum
-        # get a list of tuples, (start, end) of 1s in nums
-        # padding before applying discrete differentiation filter
-        mynums = [0]
-        mynums.extend(nums)
-        mynums.append(0)
+        # get a list of tuples, (start, end) of 1s
+        # tail padding to wrap last group of 1s
+        nums.append(0)
         ones = []
-        i = 1
-        while i < len(mynums):
-            diff = mynums[i] - mynums[i-1]
-            if diff > 0:	# positive impulse
-                start = i-1
-            elif diff < 0:	# negative impulse
-                ones.append((start, i-2))
-            i += 1
+        start = -1
+        for i, n in enumerate(nums):
+            if n == 0:
+                if start >= 0:
+                    ones.append((start, i-1))
+                    start = -1
+            elif start < 0:
+                start = i
+        
+        # if only 1 group, check if any 0 to delete, otherwise have to delete 1
+        if len(ones) == 1:
+            a, b = ones[0]
+            return ones[0][1] - ones[0][0] + (a != 0 or b != len(nums)-2)
+        
         # record max length of each tuple or if neighbor tuples index diff is 2
         record = 0
-        for start, end in ones:
-            record = max(record, end-start+1)
         for j in range(len(ones)-1):
             start1, end1 = ones[j]
             start2, end2 = ones[j+1]
+            record = max(record, end1-start1+1, end2-start2+1)
             if start2 - end1 == 2:
                 record = max(record, end2-start1)
         return record
