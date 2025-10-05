@@ -34,7 +34,7 @@ class Solution:
         res = []
         for i in range(m):
             for j in range(n):
-                if self.record[i][j][0] == self.record[i][j][1] == 1:
+                if all(self.record[i][j]):
                     res.append([i, j])
         return res
 
@@ -43,9 +43,7 @@ class Solution:
         if self.record[i][j][pos] != 0:
             return
         self.record[i][j][pos] = 1
-        candi = [(i-1, j), (i+1, j), (i, j-1), (i, j+1)]
-        for x, y in candi:
-            if x < 0 or x >= self.m or y < 0 or y >= self.n or self.heights[x][y] < self.heights[i][j]:
-                continue
-            self.propagate(x, y, pos)
+        for x, y in [(i-1, j), (i+1, j), (i, j-1), (i, j+1)]:
+            if 0 <= x < self.m and 0 <= y < self.n and self.heights[x][y] >= self.heights[i][j]:
+                self.propagate(x, y, pos)
         
