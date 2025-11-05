@@ -48,7 +48,9 @@ class Solution:
                 pre, pre_h = res[-2]
                 if cur != pre and cur_h != pre_h:
                     break
+                # if diff position but same height, latter is not critical, pop
                 res.pop()
+                # if same position but diff/same height, merge for greater height
                 if cur == pre:
                     res[-1][1] = max(cur_h, pre_h)
         return res

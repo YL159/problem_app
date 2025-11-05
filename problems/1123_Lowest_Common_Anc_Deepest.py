@@ -1,9 +1,16 @@
 '''
 Leetcode 1123. Lowest Common Ancestor of Deepest Leaves
-Find the neareast common ancestor of deepest leaves of a BT
+Find the neareast common ancestor of all deepest leaves of a BT
 
+Method 1, dfs post-order find paths to deepest nodes, compare them for LCA
 DFS recursively dig for the deepest leaves and their paths, should be of the same length
 Then find the farthest common node in these paths.
+Time O(n), Space O(log(n)) worst case O(n)
+
+Method 2, refine on method 1, dfs post-order returning only potential LCA and depth
+Same idea as Method 1, but we don't need to collect entire paths to deepest node
+For each node, as it is potential LCA, just decide returning itself, or some potential LCA of its subtree
+Time O(n), Space O(1) not considering call stack
 '''
 
 from typing import Optional
@@ -16,14 +23,12 @@ class TreeNode:
         self.right = right
     
 class Solution:
+    # method 1, dfs post-order find paths to deepest nodes, compare them for LCA
     def lcaDeepestLeaves(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         # find the path to deepest leaves
         self.paths, self.path = [], []
         self.depth = -1
         self.dfsDeepest(root, 0)
-        for x in self.paths:
-            print([y.val for y in x])
-        print(self.depth)
 
         # for the deepest leaves, get the last same node in their paths
         first = self.paths[0]
@@ -49,3 +54,25 @@ class Solution:
                 self.depth = dep
                 self.paths = [self.path.copy()]
         self.path.pop()
+
+    
+    # method 2, refind on method 1, decide return self node, or LCA node from subtree
+    def lcaDeepestLeaves(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        # post order dfs traversal, return (LCA of deepest nodes in subtree, depth of subtree)
+        def post_order(rt: Optional[TreeNode]) -> tuple:
+            if not rt:
+                return rt, 0
+            # get lca and depth of both subtrees
+            left_lca, d1 = post_order(rt.left)
+            right_lca, d2 = post_order(rt.right)
+            # subtree depth the same, thus both of them contain some local deepest leaves
+            # rt must be LCA of current subtree's group of deepest leaves
+            if d1 == d2:
+                return rt, d1+1
+            # left subtree is deeper, its LCA should be returned
+            if d1 > d2:
+                return left_lca, d1+1
+            # same for right subtree is deeper
+            return right_lca, d2+1
+
+        return post_order(root)[0]
