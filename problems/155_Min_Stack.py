@@ -1,8 +1,10 @@
 '''
 Leetcode 155. Min Stack
-All function calls are O(1) time
+Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
+
 Keeps another stack of any encountered min values. Thus the top of min stack is always the min of number stack
 pop min stack only when popping that value from number stack
+All function calls are O(1) time
 '''
 class MinStack:
 

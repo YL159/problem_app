@@ -29,7 +29,7 @@ class LRUCache:
         if key not in self.book:
             return -1
         node = self.book[key]
-        self.to_top(node)
+        self._to_top(node)
         return node.val
 
     def put(self, key: int, value: int) -> None:
@@ -45,10 +45,10 @@ class LRUCache:
                 las.pre, las.nex = None, None
                 del self.book[las.key]
             self.book[key] = node
-        self.to_top(node)
+        self._to_top(node)
         
     # put a dll node or new node to top (nex of dummy)
-    def to_top(self, node:Node) -> None:
+    def _to_top(self, node:Node) -> None:
         if node.pre == self.dummy:
             return
         if node.pre:
