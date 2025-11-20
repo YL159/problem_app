@@ -1,7 +1,11 @@
-
 '''
 Leetcode 86. Partition List
-Go through the linked list and collect less/more than x nodes in-place. Then concatenate them.
+Go through the linked list and group nodes with value < x before nodes >= x.
+Then concatenate them in original order.
+
+Maintain 2 linked list of lesser and no-lesser than x in traversing order/
+Then concatenate them.
+Time O(n), Space O(1)
 '''
 class Solution:
     def partition(self, head, x: int):
