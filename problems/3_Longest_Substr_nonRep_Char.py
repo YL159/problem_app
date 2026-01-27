@@ -5,6 +5,8 @@ Find its length
 Use sliding window, and a hashmap to record latest position of each char.
 When current char appears in hashmap and its latest position is within the window, time to record this substr
 Also wrap up the last char position
+
+Time O(n), Space O(1) keep only 26 letters' positions
 '''
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
