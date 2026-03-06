@@ -10,28 +10,28 @@ import collections
 
 class Solution:
     def countSubTrees(self, n: int, edges: List[List[int]], labels: str) -> List[int]:
-        self.labels = labels
-        self.tree = collections.defaultdict(list)
+        tree = collections.defaultdict(list)
         for a, b in edges:
-            self.tree[a].append(b)
-            self.tree[b].append(a)
-        self.res = [0] * n
+            tree[a].append(b)
+            tree[b].append(a)
         # char: int count # of char seen so far
-        self.count = collections.defaultdict(int)
-        # add -1 to root to avoid been regarded as leaf
-        self.tree[0].append(-1)
-        self.postOrder(0, -1)
-        return self.res
+        count = collections.defaultdict(int)
+        res = [0] * n
+
+        def postOrder(rt: int, parent: int) -> None:
+            c = labels[rt]
+            prev = count[c]
+            count[c] += 1
+            for node in tree[rt]:
+                if node == parent:
+                    continue
+                postOrder(node, rt)
+            # rt label appearance in subtree = label # difference before/after visit
+            res[rt] = count[c] - prev
+            return
+
+        postOrder(0, -1)
+        return res
     
-    def postOrder(self, rt: int, parent: int) -> None:
-        c = self.labels[rt]
-        prev = self.count[c]
-        self.count[c] += 1
-        for node in self.tree[rt]:
-            if node == parent:
-                continue
-            self.postOrder(node, rt)
-        # rt label appearance in subtree = label # difference before/after visit
-        self.res[rt] = self.count[c] - prev
-        return
+        
         
