@@ -12,6 +12,9 @@ Each pop from stack means a valid "outer" '(' and ')' match
     => substr in between must also be valid
     => stack top is the index before the head of such "outer" match 
     => longest substr length is cur index - stack top index
+At the end, all the unmatched ')' are in the stack, waste of space
+Again improve by popping last sentinel idx
+    and use new ')' idx (matched or not) as sentinel
 
 Time O(n), Space O(n)
 '''
@@ -38,13 +41,19 @@ class Solution:
 
     # method 2, simplify method 1
     def longestValidParentheses(self, s: str) -> int:
+        # default sentinel before idx 0
         stack = [-1]
         res = 0
         for i, c in enumerate(s):
-            if c == '(' or stack[-1] == -1 or s[stack[-1]] == ')':
+            if c == '(':
                 stack.append(i)
-                continue
-            stack.pop()
-            # after pop, stack[-1] must be the head of current continuously valid substr
-            res = max(res, i - stack[-1])
+            else:
+                stack.pop()
+                if not stack:
+                    # match or not, this ')' will be sentinel if empty
+                    # if ')' is not matching the popped (another ')'): new sentinel
+                    # if match popped '(' -> valid right parenth, still new sentinel
+                    stack.append(i)
+                else:
+                    res = max(res, i - stack[-1])
         return res
