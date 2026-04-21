@@ -15,6 +15,14 @@ Since we care only the prefix/suffix max of a cell, ideally the max is/are in th
     => suffix max changing portion won't affect the changing portion of prefix max
 	=> use 2 pointer to simulate the traversal, collect water on the way
 Time O(n), Space O(1)
+
+Method 3, improve on 2-pointer
+Each iteration determines left cell or right cell:
+    => cell water determined by current left max and right max
+    => if left max is smaller, any future right is taller or smaller doesn't affect cell water
+    => if right max is smaller, same for any future left height recorded
+Update left/right max height on the way
+Time O(n), Space O(1)
 '''
 
 from typing import List
@@ -22,7 +30,7 @@ from typing import List
 
 class Solution:
     
-	# method 1, find tallest wall from left & right of each cell
+	# Method 1, find tallest wall from left & right of each cell
 	# cell water = min(left, right) - cell, min 0
     def trap(self, height: List[int]) -> int:
 
@@ -31,16 +39,16 @@ class Solution:
             tall = 0
             res = []
             for n in arr:
-                res.append(tall)
                 tall = max(tall, n)
+                res.append(tall)
             return res
         
         left = left_tall(height)
         right = left_tall(height[::-1])[::-1]
-        return sum(max(min(a, b)-h, 0) for a, b, h in zip(left, right, height))
+        return sum(min(a, b)-h for a, b, h in zip(left, right, height))
     
 
-	# method 2, 2 pointer version of seeking tallest mid-point and sweep both sides
+	# Method 2, 2 pointer version of seeking tallest mid-point and sweep both sides
     def trap(self, height: List[int]) -> int:
         # from left to right, climb to the highest, take n iteration
         # then from right to left, collect water till said highest, take max n iteration
@@ -67,4 +75,24 @@ class Solution:
             else:
                 res += height[rever] - height[cur]
             cur -= 1
+        return res
+    
+
+    # Method 3, 2 pointer improved, optimal
+    def trap(self, height: List[int]) -> int:
+        # 2 pointer improved
+        # left record current left max, right the same
+        left, right = 0, len(height)-1
+        lmax = rmax = res = 0
+        while left < right:
+            lmax = max(lmax, height[left])
+            rmax = max(rmax, height[right])
+            # min(left max, right max) is current water level
+            # for current min(left, right) position
+            level = min(lmax, rmax)
+            res += level - min(height[left], height[right])
+            if height[left] <= height[right]:
+                left += 1
+            else:
+                right -= 1
         return res

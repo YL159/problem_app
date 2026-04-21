@@ -67,6 +67,7 @@ def eval_or(expr: str) -> str:
     # print('or', expr, 'FT'[res])
     return 'FT'[res]
 
+
 def eval_and(expr: str) -> str:
     # deal with & only
     # 2nd precedence
@@ -83,6 +84,7 @@ def eval_and(expr: str) -> str:
         res &= 'FT'.index(val)
     # print('and', expr, 'FT'[res])
     return 'FT'[res]
+
 
 def eval_not(expr: list) -> int:
     # deal with ! only
