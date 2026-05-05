@@ -10,7 +10,8 @@ Accurate under 10^-5 difference than real value
 Observation:
 1. On average, A is likely pour out more than B in each operations
 	=> A will likely depletes earlier than B when n is large
-2. A B states are fixed, (n, n), (n-100, n), (n-75, n-25) ... thus result probability depends on 4 prior states' probability
+2. A B states are fixed, (n, n), (n-100, n), (n-75, n-25) ...
+thus result probability depends on 4 prior states' probability
 	=> bottom up tabulation to avoid repeated state result calculation
 	=> top down using cache is also ok
 This is an upgraded fibonacci number problem, with 2D-DP
@@ -57,12 +58,12 @@ class Solution:
             return 1.
         lim = 1-10**-5
         serving = math.ceil(n/25) + 1
-        dp = [[0]*serving for _ in range(serving)]
+        dp = [[0.]*serving for _ in range(serving)]
         # half probability of a=b=0, 1 * 0.5
         # this 0.5 will carry on for all states that choose to ends at a=b=0
         dp[0][0] = 0.5
         for b in range(1, serving):
-            dp[0][b] = 1
+            dp[0][b] = 1.
         for a in range(1, serving):
             for b in range(1, serving):
                 # current state depends on previous 4 states
