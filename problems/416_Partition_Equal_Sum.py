@@ -1,5 +1,5 @@
 '''
-LeetCode 416 Partition Equal Subset Sum
+LeetCode 416. Partition Equal Subset Sum
 memo set record existing sums from all paths
 optimize by record those smaller than target
 '''

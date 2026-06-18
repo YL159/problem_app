@@ -1,5 +1,5 @@
 '''
-LeetCode 721 Accounts Merge
+LeetCode 721. Accounts Merge
 union find.
 '''
 from typing import List

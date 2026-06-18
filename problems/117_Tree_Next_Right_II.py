@@ -1,5 +1,5 @@
 '''
-117. Populating Next Right Pointers in Each Node II
+Leetcode 117. Populating Next Right Pointers in Each Node II
 For each node in a binary tree, populate 'next' pointer to its right neighbor in the same layer
 
 Other than BFS using O(n) space, here keep finished layer's head reference and O(1) space generate current layer's pointers

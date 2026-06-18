@@ -1,4 +1,6 @@
 '''
+True or False
+
 Given a string containing only "T", "F", "()", "|", "&", "!"
 representing True, False, bracket precedence, or, and, not
 

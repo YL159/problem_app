@@ -1,5 +1,5 @@
 '''
-leetcode 1202. Smallest String With Swaps
+Leetcode 1202. Smallest String With Swaps
 Given a string, and a list of swappable pairs of idx. Can swap between the idx pairs any # of times.
 Find the lexicographically smallest string after swap.
 

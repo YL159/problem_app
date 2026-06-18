@@ -1,5 +1,5 @@
 '''
-LeetCode 82 Remove Duplicates from Sorted List II
+LeetCode 82. Remove Duplicates from Sorted List II
 Remove duplicate node like related problem I, remember those duplicates
 2nd pass remove those nodes in-place
 '''

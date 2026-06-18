@@ -1,5 +1,5 @@
 '''
-Hackerrank, Correlation Sum
+Hackerrank: Correlation Sum
 Given 2 int array of the same length: a, b
 Rearrange b so that the sum of b[i] that are greater than a[i] is maximum
 

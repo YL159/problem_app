@@ -1,5 +1,5 @@
 '''
-Leetcode 3578_Count_Partitions_With_Max-Min_Diff_at_Most K
+Leetcode 3578. Count Partitions With Max-Min Difference at Most K
 Give an int array nums, and min-max diff k >= 0
 Find how many partions of nums so that each subarr's min-max diff <= k
 

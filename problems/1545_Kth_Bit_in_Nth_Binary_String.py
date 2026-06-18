@@ -9,21 +9,23 @@ Similar to recursive doubling, here we use recursive halfing the target range.
 Trace target k position in its former place in S(i-1), and # of inversions.
 Time O(n), space O(1)
 '''
+
 class Solution:
     def findKthBit(self, n: int, k: int) -> str:
         # len(Sk) = 2^k - 1
         cur = n
-        inv = 0 # record # of inverse to reach pos k
+        inv = 0 # record # of inversion to reach pos k
         k -= 1
-        # iterative halfing
+        mid = 2 ** cur - 1
+        # recursive halfing
         while cur > 1:
             # mid is idx of center 1, also len of 1st half
-            mid = 2 ** (cur - 1) - 1
+            mid = (mid + 1) // 2 - 1
             if k == mid:
                 return '0' if inv % 2 else '1'
             if k > mid:
                 inv += 1
                 # new idx of target position
-                k = 2* mid - k
+                k = 2 * mid - k
             cur -= 1
         return '1' if inv % 2 else '0'

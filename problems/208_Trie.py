@@ -1,5 +1,5 @@
 '''
-LeetCode 208 Implement Trie (prefix tree)
+LeetCode 208. Implement Trie (prefix tree)
 Iteratively add char as layer dictionary keys. End word with int entry 0: 1
 '''
 class Trie:

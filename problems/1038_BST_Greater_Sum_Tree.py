@@ -1,5 +1,5 @@
 '''
-1038. Binary Search Tree to Greater Sum Tree
+Leetcode 1038. Binary Search Tree to Greater Sum Tree
 Given a BST, return the tree where each node value = sum(all values in the BST that >= node value)
 
 1. Intuitively, we can extract the in-order # array from BST, the sum of all greater values are just suffix sum of the array

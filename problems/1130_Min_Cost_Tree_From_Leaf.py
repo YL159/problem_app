@@ -1,5 +1,5 @@
 '''
-1130. Minimum Cost Tree From Leaf Values
+Leetcode 1130. Minimum Cost Tree From Leaf Values
 Given an in-order traversal list of leaf node values, for all the trees from it, get the min sum of non-leaf nodes
 
 Here is a memo brutal solution of all possible trees.

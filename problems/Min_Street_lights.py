@@ -1,5 +1,6 @@
 '''
-Hackerrank, Minimum street lights
+Hackerrank: Minimum street lights
+
 Given an arr of street light loc[] of length n. The street cover [1, n] range.
 Each light covers [(max(i-loc[i]), 1), min(i+loc[i], n)] range. All lights are off initially
 Find min # of lights to turn on, in order to cover the whole street.

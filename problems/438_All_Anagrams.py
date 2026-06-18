@@ -1,5 +1,5 @@
 '''
-LeetCode 438 All Anagrams
+LeetCode 438. All Anagrams
 word frame moving, update counter only at edge.
 '''
 from collections import Counter

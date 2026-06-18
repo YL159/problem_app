@@ -1,5 +1,5 @@
 '''
-Codility problem: Mininum Number of Glasses
+Codility: Mininum Number of Glasses
 
 Given a series of empty glasses with capacity of 1,2,3,..., N,
 Find the minimum number of glasses needed to fill a total volume of K

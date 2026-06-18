@@ -1,4 +1,6 @@
 '''
+Interleaving conflicts
+
 Given 2 strings s1, s2 of only lower English letters, with some internal conflicts.
 Interleave them together into 1 string, find result string's min conflicts.
 
@@ -19,3 +21,4 @@ Each blue char's contribution to conflict depends on its position among s2:
 
 
 '''
+
