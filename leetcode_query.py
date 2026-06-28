@@ -1,6 +1,21 @@
 import urllib3 as ul
-import re
-from typing import List
+
+
+# tags ordered by problem count (popularity), keep this order
+ALL_TAGS = ('Array', 'String', 'Hash Table', 'Math', 'Dynamic Programming', \
+            'Sorting', 'Greedy', 'Depth-First Search', 'Binary Search', 'Database', \
+            'Bit Manipulation', 'Matrix', 'Tree', 'Breadth-First Search', 'Prefix Sum', \
+            'Two Pointers', 'Heap (Priority Queue)', 'Simulation', 'Counting', \
+            'Graph Theory', 'Binary Tree', 'Stack', 'Sliding Window', 'Enumeration', \
+            'Design', 'Backtracking', 'Number Theory', 'Union-Find', 'Linked List', \
+            'Segment Tree', 'Ordered Set', 'Monotonic Stack', 'Divide and Conquer', \
+            'Combinatorics', 'Trie', 'Queue', 'Bitmask', 'Recursion', 'Geometry', \
+            'Binary Indexed Tree', 'Hash Function', 'Memoization', 'Binary Search Tree', \
+            'Topological Sort', 'Shortest Path', 'String Matching', 'Rolling Hash', \
+            'Game Theory', 'Monotonic Queue', 'Interactive', 'Data Stream', 'Brainteaser', \
+            'Doubly-Linked List', 'Merge Sort', 'Randomized', 'Counting Sort', 'Iterator', \
+            'Concurrency', 'Quickselect', 'Suffix Array', 'Sweep Line', \
+            'Probability and Statistics', 'Minimum Spanning Tree', 'Bucket Sort')
 
 
 # wrapper class for question meta info, implement attr get interface
@@ -26,7 +41,7 @@ class Question:
     
     @property
     def tags(self) -> list:
-        return [tag["name"] for tag in self._data["topicTags"] if tag["name"] in all_tags]
+        return [tag["name"] for tag in self._data["topicTags"] if tag["name"] in ALL_TAGS]
 
 
 # make graphql query of leetcode question title slug
@@ -75,23 +90,6 @@ def query_leet(title_slug: str) -> Question | None:
             print(response.data)
     except Exception as e:
         print(f"Error: {e}")
-
-
-# tags ordered by problem count (popularity), keep this order
-all_tags = ['Array', 'String', 'Hash Table', 'Math', 'Dynamic Programming', \
-            'Sorting', 'Greedy', 'Depth-First Search', 'Binary Search', 'Database', \
-            'Bit Manipulation', 'Matrix', 'Tree', 'Breadth-First Search', 'Prefix Sum', \
-            'Two Pointers', 'Heap (Priority Queue)', 'Simulation', 'Counting', \
-            'Graph Theory', 'Binary Tree', 'Stack', 'Sliding Window', 'Enumeration', \
-            'Design', 'Backtracking', 'Number Theory', 'Union-Find', 'Linked List', \
-            'Segment Tree', 'Ordered Set', 'Monotonic Stack', 'Divide and Conquer', \
-            'Combinatorics', 'Trie', 'Queue', 'Bitmask', 'Recursion', 'Geometry', \
-            'Binary Indexed Tree', 'Hash Function', 'Memoization', 'Binary Search Tree', \
-            'Topological Sort', 'Shortest Path', 'String Matching', 'Rolling Hash', \
-            'Game Theory', 'Monotonic Queue', 'Interactive', 'Data Stream', 'Brainteaser', \
-            'Doubly-Linked List', 'Merge Sort', 'Randomized', 'Counting Sort', 'Iterator', \
-            'Concurrency', 'Quickselect', 'Suffix Array', 'Sweep Line', \
-            'Probability and Statistics', 'Minimum Spanning Tree', 'Bucket Sort']
 
 
 if __name__ == "__main__":

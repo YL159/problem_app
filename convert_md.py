@@ -1,6 +1,5 @@
 from pathlib import Path
 import re
-import json
 import textwrap
 from leetcode_query import query_leet
 
@@ -44,7 +43,6 @@ def convert_py_to_md(py_file: Path, md_file: Path) -> None:
             '''
 
             source = f'[{line1}]({q_data.url})'
-
         elif ':' in line1:
             source, title = re.match(r'(\w+):(.+)', line1).groups()
             title = title.strip()
@@ -60,9 +58,10 @@ def convert_py_to_md(py_file: Path, md_file: Path) -> None:
             title: {title}
             ---
             '''
+        
         info = textwrap.dedent(info)
         # if text line ends with \n, add space to force line break
-        description = re.sub(r'(?<=\S)\n', '  \n', description)
+        # description = re.sub(r'(?<=\S)\n', '  \n', description)
         # escape # in description to avoid markdown header
         description = description.replace('#', '\\#')
 

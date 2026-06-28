@@ -6,26 +6,26 @@ difficulty: Hard
 ## Largest Rectangle in Histogram
 [Leetcode 84. Largest Rectangle in Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram)
 
-Find the largest rectangle within the histogram formed by non-neg int array  
+Find the largest rectangle within the histogram formed by non-neg int array
 
-Observation:  
-The largest rectangle comes from candidate list of:  
-	rectangle = height[i] * max width stretch from i to left & right  
-height[i] reach left and right until 1st smaller bar shows up  
-    => monotonic increasing stack  
+Observation:
+The largest rectangle comes from candidate list of:
+	rectangle = height[i] * max width stretch from i to left & right
+height[i] reach left and right until 1st smaller bar shows up
+    => monotonic increasing stack
 
-Method 1, monotonic increasing stack  
-find how far height[i] can reach to its right.  
-Record this right-rectangle whenever height[i] is about to pop  
-Do the same for reversed height arr, add them up and subtract the height itself.  
+Method 1, monotonic increasing stack
+find how far height[i] can reach to its right.
+Record this right-rectangle whenever height[i] is about to pop
+Do the same for reversed height arr, add them up and subtract the height itself.
 
-Method 2, improve on method 1, lazy decide each bar's left-right range  
-poping a height means:  
-    all heights in [pop, cur] >= popping h  
-    all heigths in [stack[-1], pop] >= popping h  
-Thus right end = i, left end = stack top  
+Method 2, improve on method 1, lazy decide each bar's left-right range
+poping a height means:
+    all heights in [pop, cur] >= popping h
+    all heigths in [stack[-1], pop] >= popping h
+Thus right end = i, left end = stack top
 
-Time O(n), space O(n)  
+Time O(n), space O(n)
 
 
 ```python
